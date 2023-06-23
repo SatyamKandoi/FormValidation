@@ -7,6 +7,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
+import schedule from "node-schedule"
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Checkbox from '@mui/material/Checkbox';
 
 const ITEM_HEIGHT = 48;
@@ -37,13 +40,17 @@ const names = [
 
 
 const Form = () => {
+
+  const [selectedDateTime,setSelectedDateTime] = useState(new Date())
   const [values, setValues] = useState({
     username: "",
     email: "",
     birthday: "",
     password: "",
     confirmPassword: "",
-    personName:[]
+    image:"",
+    personName:[],
+    datetime:""
   });
 
   const inputs = [
@@ -101,21 +108,38 @@ const Form = () => {
       type:"file",
       placeholder:"Select image",
       errorMessage:"Please Select Image",
-    }
+    },
+    
   ];
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem("values",JSON.stringify(values))
 
-
+    schedule.scheduleJob(`${values.datetime}`, function () {
+    
+          alert("The answer to life, the universe, and everything!");
+    
+        });
   }
+
 
   const onChange = (e) => {
+    if(e.target.type=="file"){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=()=>{
+        console.log(reader.result);
+        setValues({ ...values, [e.target.name]: reader.result })
+      }
+      reader.onerror=console.error();
+      return 
+    }
     setValues({ ...values, [e.target.name]: e.target.value })
   }
-  console.log(values)
+ 
 
   const handleChange = (event) => {
     const {
@@ -129,7 +153,7 @@ const Form = () => {
 
   return (
     <div className='app'>
-      <form onChange={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h1> Register </h1>
         {inputs.map((input) => (
           <InputBox key={input.id} {...input} onChange={onChange} value={values[inputs.name]} />
@@ -156,7 +180,22 @@ const Form = () => {
           ))}
         </Select>
 
+        <DemoContainer components={['DateTimePicker']}>
+        <DateTimePicker label="Basic date time picker" onChange={(newValue)=>{
+          const val = newValue.toISOString()
+       
+
+          setValues({
+            ...values,
+            datetime:val
+          })
+          
+        }} />
+      </DemoContainer>
+
+
       </FormControl>
+
         <button>Submit</button>
 
       </form>

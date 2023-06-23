@@ -4,17 +4,21 @@ import App from './App';
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { StyledEngineProvider } from '@mui/material/styles';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
     <Provider store={store}>
         <StyledEngineProvider injectFirst>
         <App />
     </StyledEngineProvider>
       
     </Provider>
-
+    </LocalizationProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
