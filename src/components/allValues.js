@@ -1,0 +1,31 @@
+export const allValues = {
+    username: "",
+    email: "",
+    birthday: "",
+    password: "",
+    confirmPassword: "",
+    personName: [],
+    image: "",
+    alertTime: ``,
+    courtname: "",
+    courtid: "",
+    prejudge: "",
+    deputy: "",
+    clerk: "",
+    municipal_name: "",
+    office_name: "",
+    court_address: "",
+  }
+export const allnames = 
+    [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];

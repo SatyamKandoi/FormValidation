@@ -1,27 +1,20 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { showUser } from '../features/userDetailSlice'
+import { showUser } from '../../../features/userDetailSlice'
 import { useSelector } from 'react-redux'
-import CustomModal from './CustomModal'
+import CustomModal from '../Inputs/CustomModal'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
-import { deleteUser } from '../features/userDetailSlice'
+import { deleteUser } from '../../../features/userDetailSlice'
 
 const Read = () => {
 
-
     const dispatch = useDispatch()
-
     const [showPopup, setShowpopup] = useState(false);
-
-
     const [radioData,setRadioData] = useState("")
-
     const [id, setId] = useState();
-
     const { users, loading,searchData } = useSelector((state) => state.app)
-
     useEffect(() => {
         dispatch(showUser())
     }, [])

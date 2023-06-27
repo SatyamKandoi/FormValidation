@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { updateUser } from '../features/userDetailSlice';
+import { updateUser } from '../../../features/userDetailSlice';
 
 
 const Update = () => {

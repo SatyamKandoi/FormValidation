@@ -12,7 +12,7 @@ const InputBox = (props) => {
     <div className='formInput'>
         <label>{label}</label>
         <input  {...inputProps}  onChange={onChange} onFocus={()=>(inputProps.name==="confirmPassword" && setFocused(true))}  onBlur={handleFocus} focused={focused.toString()}/>
-        <span>{errorMessage}</span>
+        <span id="msgerr">{errorMessage}</span>
     </div>
   )
 }

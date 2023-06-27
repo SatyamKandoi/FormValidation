@@ -1,20 +1,23 @@
 import React from "react";
-import Create from "./components/Create";
+import Create from "./components/pages/CRUD/Create";
 import "./App.css";
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import Read from "./components/Read";
-import Update from "./components/Update";
-import Form from "./components/Form";
+import Read from "./components/pages/CRUD/Read";
+import Update from "./components/pages/CRUD/Update";
+
+import HorizontalNonLinearStepper from "./components/pages/Form/HorizontalNonLinearStepper";
+
 
 const router = createBrowserRouter([
     {
         path:"/",
-        element:<Form  />
+        element:<HorizontalNonLinearStepper/>
     },
     {
          path:"/create",
         element:<Create/>
     },
+    
    {
     path:"/read",
     element:<Read/>
